@@ -78,7 +78,7 @@ SvgPicture ScreenBackground(context){
     alignment: Alignment.center,
     width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height,
-    fit: BoxFit.cover,
+    fit: BoxFit.fill,
   );
 }
 
@@ -99,6 +99,7 @@ TextStyle ButtonTextStyle(){
     fontSize: 16,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
+    color: colorWhite
   );
 }
 
