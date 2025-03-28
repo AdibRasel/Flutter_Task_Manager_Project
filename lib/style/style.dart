@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 
 
@@ -16,6 +17,34 @@ const colorWhite = Color.fromRGBO(255, 255, 255, 1);
 const colorDarkBlue = Color.fromRGBO(44, 62, 80, 1);
 const colorLightGrey = Color.fromRGBO(135, 142, 150, 1);
 const colorLight = Color.fromRGBO(211, 211, 211, 1);
+
+
+
+
+PinTheme AppOTPStyle(){
+  return PinTheme(
+    inactiveColor: colorLight,
+    inactiveFillColor: colorWhite,
+    selectedColor: colorGreen,
+    activeColor: colorWhite,
+
+
+    selectedFillColor: colorGreen,
+    shape: PinCodeFieldShape.box,
+    borderRadius: BorderRadius.circular(5),
+    fieldHeight: 50,
+    borderWidth: 0.5,
+    fieldWidth: 40,
+    activeFillColor: colorWhite,
+  );
+}
+
+
+
+
+
+
+
 
 
 

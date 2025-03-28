@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:taskmanager/style/style.dart';
 
 
@@ -14,28 +15,38 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-         children: [
-           ScreenBackground(context),
+        children: [
+          ScreenBackground(context),
           Container(
             padding: const EdgeInsets.all(30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
-             
-                Text("Set Password", style: Head1Text(colorDarkBlue),),
-                const SizedBox(height: 1,),
-                Text("Minimum length password 8 character with Latter and number combination", style: Head6Text(colorLightGrey),),
+                Text("PIN Verification", style: Head1Text(colorDarkBlue),),
+                const SizedBox(height: 10,),
+                Text("A 6 digit pin has bean send to your email address", style: Head6Text(colorLightGrey),),
                 const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Password"),),
-                const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Confirm Password"),),
+                PinCodeTextField(
+                  appContext: context, 
+                  length: 6,
+                  pinTheme: AppOTPStyle(),
+                  animationType: AnimationType.fade,
+                  animationDuration: const Duration(milliseconds: 300),
+                  enableActiveFill: true,
+                  onCompleted: (pin){
+
+                  },
+                  onChanged: (value){
+
+                  },
+
+                ),
                 const SizedBox(height: 20,),
                 Container(
                   child: ElevatedButton(
                     style: AppButtonStyle(),
-                    child: SuccessButtonChild("Confirm"),
+                    child: SuccessButtonChild("Verify"),
                     onPressed: (){}, 
                   ),
                 ),
@@ -47,7 +58,7 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Have account?", style: Head6Text(colorLightGrey),),
-                    SizedBox(width: 5,),
+                    const SizedBox(width: 5,),
                     InkWell(
                       onTap: (){
 
@@ -56,11 +67,10 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
                     ),
                   ],
                 )
-
               ],
             ),
-          ),
-         ],
+          )
+        ],
       ),
     );
   }
