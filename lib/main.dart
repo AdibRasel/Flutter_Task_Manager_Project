@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Task Manager',
       
-      initialRoute: '/pinVerification',
+      initialRoute: '/',
       routes: {
         '/': (context)=> splashScreen(),
         '/login': (context)=> loginScreen(),
