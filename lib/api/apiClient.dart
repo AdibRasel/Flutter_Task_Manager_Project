@@ -3,7 +3,9 @@ import 'package:taskmanager/style/style.dart';
 import 'package:http/http.dart' as http;
 
 const BaseURL = "https://flutter-backend-all-api.onrender.com/api/v1";
-const RequestHeader = {"Content-Type":"application/json"};
+Map<String, String> RequestHeader = {
+  'Content-Type': 'application/json',
+};
 
 
 //================== User Releted API Request Start =============================

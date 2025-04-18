@@ -71,6 +71,6 @@ class _registrationScreenState extends State<registrationScreen> {
           ),
          ],
       ),
-    );;
+    );
   }
 }
