@@ -35,6 +35,9 @@ class _loginScreenState extends State<loginScreen> {
       bool response = await LoginRequest(FormValues);
       if(response == true){
         // Navigate to DashBoard Page
+        // pushNamedAndRemoveUntil এর কাজ হচ্ছে যে রুটে আছি সেই রুটের উপর থেকে সবগুলো রুট মুছে ফেলে নতুন রুটে নিয়ে যাওয়া
+        // যেমন আমি যদি loginScreen থেকে newTask এ যেতে চাই তাহলে loginScreen এর উপর থেকে সবগুলো রুট মুছে দিয়ে newTask এ নিয়ে যাবে
+        Navigator.pushNamedAndRemoveUntil(context, "/newTask", (route)=> false);
       }else{
 
       }

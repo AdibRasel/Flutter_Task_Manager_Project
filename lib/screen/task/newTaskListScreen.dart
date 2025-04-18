@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/utility/utility.dart';
 
 class newTaskListScreen extends StatefulWidget {
   const newTaskListScreen({super.key});
@@ -8,6 +9,30 @@ class newTaskListScreen extends StatefulWidget {
 }
 
 class _newTaskListScreenState extends State<newTaskListScreen> {
+
+  String email = "";
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    CallUserData();
+  }
+
+  CallUserData() async {
+    var test = await GetUserData("token");
+
+    if (test != null) {
+      setState(() {
+        email = test;
+      });
+    } else {
+      // null হলে কিছু fallback বা default behavior রাখো
+      print("Email not found in SharedPreferences");
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +40,7 @@ class _newTaskListScreenState extends State<newTaskListScreen> {
         title: Text("New Task"),
       ),
       body: Center(
-        child: Text("This is the new task list screen."),
+        child: Text(email),
       ),
     );
   }

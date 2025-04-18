@@ -1,6 +1,7 @@
 import 'dart:convert'; // json incode decode
 import 'package:taskmanager/style/style.dart';
 import 'package:http/http.dart' as http;
+import 'package:taskmanager/utility/utility.dart';
 
 const BaseURL = "https://flutter-backend-all-api.onrender.com/api/v1";
 Map<String, String> RequestHeader = {
@@ -23,6 +24,7 @@ Future <bool> LoginRequest(FormValues) async {
 
   if(ResultCode == 200 && ResultBody['status']== "success"){
     SuccessToast("Request Success");
+    StoreUserData(ResultBody);
     return true;
   }else {
     ErrorToast("Request fail! try again");
