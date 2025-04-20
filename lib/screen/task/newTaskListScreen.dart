@@ -10,27 +10,7 @@ class newTaskListScreen extends StatefulWidget {
 
 class _newTaskListScreenState extends State<newTaskListScreen> {
 
-  String email = "";
-
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    CallUserData();
-  }
-
-  CallUserData() async {
-    var test = await GetUserData("token");
-
-    if (test != null) {
-      setState(() {
-        email = test;
-      });
-    } else {
-      // null হলে কিছু fallback বা default behavior রাখো
-      print("Email not found in SharedPreferences");
-    }
-  }
+  
 
 
   @override
@@ -40,7 +20,7 @@ class _newTaskListScreenState extends State<newTaskListScreen> {
         title: Text("New Task"),
       ),
       body: Center(
-        child: Text(email),
+        child: Text("New Task List Screen"),
       ),
     );
   }

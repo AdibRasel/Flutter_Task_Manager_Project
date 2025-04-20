@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:taskmanager/style/style.dart';
+import 'package:taskmanager/utility/utility.dart';
+
+import '../../api/apiClient.dart';
 
 
 class pinVerificationScreen extends StatefulWidget {
@@ -11,6 +14,50 @@ class pinVerificationScreen extends StatefulWidget {
 }
 
 class _pinVerificationScreenState extends State<pinVerificationScreen> {
+
+
+
+
+  Map<String, String> FormValues = {"OTP":""};
+
+  bool Loading = false;
+
+  InputOnChange(MapKey, TextValue){
+    setState(() {
+      FormValues.update(MapKey, (value)=>TextValue);
+    });
+  }
+
+
+
+  FormOnSubmit()async{
+    if(FormValues["OTP"]!.length==0){
+      ErrorToast("OTP Requred");
+    }else{
+      setState(() {
+        Loading = true;
+      });
+
+      String? Email = await GetUserData("EmailVerification");
+
+      bool response = await VerifyOTPRequest(Email, FormValues["OTP"]);
+      if(response == true){
+        // Navigate to DashBoard Page
+        // pushNamedAndRemoveUntil এর কাজ হচ্ছে যে রুটে আছি সেই রুটের উপর থেকে সবগুলো রুট মুছে ফেলে নতুন রুটে নিয়ে যাওয়া
+        // যেমন আমি যদি loginScreen থেকে newTask এ যেতে চাই তাহলে loginScreen এর উপর থেকে সবগুলো রুট মুছে দিয়ে newTask এ নিয়ে যাবে
+        Navigator.pushNamed(context, "/setPassword");
+      }else{
+
+      }
+      setState(() {
+        Loading = false;
+      });
+    }
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +65,15 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
         children: [
           ScreenBackground(context),
           Container(
+
+
+            child: Loading ?
+
+
+            (Center(child: CircularProgressIndicator())) : Container(
+
+
+
             padding: const EdgeInsets.all(30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +94,7 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
 
                   },
                   onChanged: (value){
-
+                    InputOnChange("OTP", value);
                   },
 
                 ),
@@ -47,7 +103,9 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
                   child: ElevatedButton(
                     style: AppButtonStyle(),
                     child: SuccessButtonChild("Verify"),
-                    onPressed: (){}, 
+                    onPressed: (){
+                      FormOnSubmit();
+                    }, 
                   ),
                 ),
 
@@ -61,7 +119,7 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
                     const SizedBox(width: 5,),
                     InkWell(
                       onTap: (){
-
+                        Navigator.pushNamed(context, "/registration");
                       },
                       child: Text("Sign in", style: Head6Text(colorGreen),)
                     ),
@@ -69,6 +127,12 @@ class _pinVerificationScreenState extends State<pinVerificationScreen> {
                 )
               ],
             ),
+
+
+            ),
+
+
+
           )
         ],
       ),

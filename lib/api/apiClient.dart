@@ -45,7 +45,7 @@ Future <bool> RegistrationRequest(FormValues) async {
   var ResultBody = json.decode(response.body);
 
   if(ResultCode == 200 && ResultBody['status']== "success"){
-    SuccessToast("Request Success");
+    SuccessToast("Registration Success");
     return true;
   }else {
     ErrorToast("Request fail! try again");
@@ -66,8 +66,9 @@ Future <bool> VerifyEmailRequest(Email) async {
   var ResultCode = response.statusCode;
   var ResultBody = json.decode(response.body);
 
-  if(ResultCode == 200 && ResultBody['status']== "success"){
-    SuccessToast("Request Success");
+  if(ResultCode == 200 && ResultBody['status']== "Success"){
+    await SetEmailVerification(Email);
+    SuccessToast("Your ${Email} 6 Digit OTP Send Success");
     return true;
   }else {
     ErrorToast("Request fail! try again");
@@ -90,7 +91,8 @@ Future <bool> VerifyOTPRequest(Email, OTP) async {
   var ResultBody = json.decode(response.body);
 
   if(ResultCode == 200 && ResultBody['status']== "success"){
-    SuccessToast("Request Success");
+    await SetOTPVerification(OTP);
+    SuccessToast("Your ${OTP} Successfuly Verifyd");
     return true;
   }else {
     ErrorToast("Request fail! try again");
@@ -103,10 +105,10 @@ Future <bool> VerifyOTPRequest(Email, OTP) async {
 
 
 // Set Password Request
-Future <bool> SetPasswordRequest(FormValues) async {
+Future <bool> SetPasswordRequest(PostBody) async {
 
   var URL = Uri.parse("${BaseURL}/RecoverResetPass");
-  var PostBody= json.encode(FormValues);
+  // var PostBody= json.encode(FormValues);
 
   var response = await http.post(URL, headers: RequestHeader, body: PostBody);
 
@@ -114,7 +116,7 @@ Future <bool> SetPasswordRequest(FormValues) async {
   var ResultBody = json.decode(response.body);
 
   if(ResultCode == 200 && ResultBody['status']== "success"){
-    SuccessToast("Request Success");
+    SuccessToast("Password Change Success");
     return true;
   }else {
     ErrorToast("Request fail! try again");

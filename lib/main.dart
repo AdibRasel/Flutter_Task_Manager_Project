@@ -7,12 +7,33 @@ import 'package:taskmanager/screen/onboarding/setPasswordScreen.dart';
 import 'package:taskmanager/screen/onboarding/splashScreen.dart';
 import 'package:taskmanager/screen/task/newTaskListScreen.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'utility/utility.dart';
+
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  String ? token = await GetUserData('token');
+
+  // এখানে token এর মাধ্যমে চেক করা হচ্ছে যে, ইউজার লগিন করেছে কিনা।
+  // যদি লগিন করে থাকে তাহলে newTaskListScreen এ নিয়ে যাবে।
+  // আর যদি লগিন না করে থাকে তাহলে loginScreen এ নিয়ে যাবে।
+
+  if(token==null){
+    // runApp( const MyApp("/login"));
+    runApp( const MyApp("/newTask"));
+  }else{
+    // runApp( const MyApp("/newTask"));
+    runApp( const MyApp("/login"));
+  }
+
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+  final String FirstRoute;
+  const MyApp(this.FirstRoute, {super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +41,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Task Manager',
       
-      initialRoute: '/login',
+      initialRoute: FirstRoute,
       routes: {
         '/': (context)=> splashScreen(),
         '/login': (context)=> loginScreen(),

@@ -105,17 +105,35 @@ class _loginScreenState extends State<loginScreen> {
             
             
                     const SizedBox(height: 10,),
+
+
             
             
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text("Have account?", style: Head6Text(colorLightGrey),),
+
+
+
+                        Container(
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, "/emailVerification");
+                            },
+                            child: Text("Forgot Password", style: Head6Text(colorGreen),)
+                          ),
+                        ),
+
+
+
+
+
                         SizedBox(width: 5,),
                         InkWell(
                           onTap: (){
+                              Navigator.pushNamed(context, "/registration");
                           },
-                          child: Text("Sign in", style: Head6Text(colorGreen),)
+                          child: Text("Registration", style: Head6Text(colorGreen),)
                         ),
                       ],
                     )
