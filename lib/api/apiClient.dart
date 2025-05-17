@@ -128,3 +128,43 @@ Future <bool> SetPasswordRequest(PostBody) async {
 
 
 //================== User Releted API Request End =============================
+
+
+
+
+
+
+//================== Task Releted API Request Start =============================
+
+// Task List Request
+Future <List> TaskListRequest(status) async {
+
+  var URL = Uri.parse("${BaseURL}/listTaskByStatus/${status}");
+  var token = await GetUserData('token');
+
+  var RequestHeaderWithToken = {
+    "Content-Type": "application/json",
+    "token": token ?? ""
+  };
+
+  var response = await http.get(URL, headers: RequestHeaderWithToken);
+
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+
+  if(ResultCode == 200 && ResultBody['status']== "success"){
+    SuccessToast("Task List Request Success");
+    return ResultBody['data'];
+  }else {
+    ErrorToast("Request fail! try again");
+    return [];
+  }
+
+}
+
+
+
+
+
+
+//================== Task Releted API Request End ===============================

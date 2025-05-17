@@ -5,7 +5,8 @@ import 'package:taskmanager/screen/onboarding/pinVerificationScreen.dart';
 import 'package:taskmanager/screen/onboarding/registrationScreen.dart';
 import 'package:taskmanager/screen/onboarding/setPasswordScreen.dart';
 import 'package:taskmanager/screen/onboarding/splashScreen.dart';
-import 'package:taskmanager/screen/task/newTaskListScreen.dart';
+import 'package:taskmanager/screen/task/homeScreenLayout.dart';
+// import 'package:taskmanager/screen/task/newTaskListScreen.dart';
 
 import 'utility/utility.dart';
 
@@ -19,11 +20,11 @@ main() async {
   // আর যদি লগিন না করে থাকে তাহলে loginScreen এ নিয়ে যাবে।
 
   if(token==null){
-    // runApp( const MyApp("/login"));
-    runApp( const MyApp("/newTask"));
-  }else{
-    // runApp( const MyApp("/newTask"));
     runApp( const MyApp("/login"));
+    // runApp( const MyApp("/newTask"));
+  }else{
+    runApp( const MyApp("/"));
+    // runApp( const MyApp("/login"));
   }
 
   // runApp(const MyApp());
@@ -43,13 +44,15 @@ class MyApp extends StatelessWidget {
       
       initialRoute: FirstRoute,
       routes: {
-        '/': (context)=> splashScreen(),
+        // '/': (context)=> splashScreen(),
+        '/': (context)=> homeScreenLayout(),
+        '/homeScreenLayout': (context)=> homeScreenLayout(),
         '/login': (context)=> loginScreen(),
         '/registration': (context)=> registrationScreen(),
         '/emailVerification': (context)=> emailVerification(),
         '/pinVerification': (context)=> pinVerificationScreen(),
         '/setPassword': (context)=> setPasswordScreen(),
-        '/newTask': (context)=> newTaskListScreen(),
+        // '/newTask': (context)=> newTaskListScreen(),
       },
 
 
