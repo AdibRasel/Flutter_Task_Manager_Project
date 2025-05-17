@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/api/apiClient.dart';
 import 'package:taskmanager/utility/utility.dart';
 
 class newTaskList extends StatefulWidget {
@@ -10,13 +11,29 @@ class newTaskList extends StatefulWidget {
 
 class _newTaskListState extends State<newTaskList> {
 
-  
+  List TaskItems = [];
+  bool Loading = false;
+
+  // পুরো ফেইজ যখন শো হবে তখন প্রথমে initState() ফাংশন কল হবে।
+  void initState() {
+    super.initState();
+    CallData();
+  }
+
+  CallData() async{
+    setState(() { Loading = true; });
+   var data = await TaskListRequest("New");
+   setState(() {
+     Loading = false;
+     TaskItems = data;
+   });
+  }
 
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Welcome to New Task List"),
+      child: Text(TaskItems.toString()),
     );
   }
 }

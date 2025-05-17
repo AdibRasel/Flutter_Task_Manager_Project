@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../api/apiClient.dart';
+
 class progressTaskList extends StatefulWidget {
   const progressTaskList({super.key});
 
@@ -8,6 +10,27 @@ class progressTaskList extends StatefulWidget {
 }
 
 class _progressTaskListState extends State<progressTaskList> {
+
+
+  List TaskItems = [];
+  bool Loading = false;
+
+  // পুরো ফেইজ যখন শো হবে তখন প্রথমে initState() ফাংশন কল হবে।
+  void initState() {
+    super.initState();
+    CallData();
+  }
+
+  CallData() async{
+    setState(() { Loading = true; });
+   var data = await TaskListRequest("Progress");
+   setState(() {
+     Loading = false;
+     TaskItems = data;
+   });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
