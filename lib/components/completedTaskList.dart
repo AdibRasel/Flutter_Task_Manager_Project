@@ -35,8 +35,6 @@ class _completedTaskListState extends State<completedTaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Welcome to Complete Task List"),
-    );
+    return Loading?(Center(child: CircularProgressIndicator())):(Center(child: Text("Completed"),));
   }
 }

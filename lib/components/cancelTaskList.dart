@@ -33,8 +33,6 @@ class _cancelTaskListState extends State<cancelTaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Welcome to Cancel Task List"),
-    );
+    return Loading?(Center(child: CircularProgressIndicator())):(Center(child: Text("Cancled"),));
   }
 }

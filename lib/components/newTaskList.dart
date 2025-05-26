@@ -10,7 +10,6 @@ class newTaskList extends StatefulWidget {
 }
 
 class _newTaskListState extends State<newTaskList> {
-
   List TaskItems = [];
   bool Loading = false;
 
@@ -20,20 +19,23 @@ class _newTaskListState extends State<newTaskList> {
     CallData();
   }
 
-  CallData() async{
-    setState(() { Loading = true; });
-   var data = await TaskListRequest("New");
-   setState(() {
-     Loading = false;
-     TaskItems = data;
-   });
+  CallData() async {
+    setState(() {
+      Loading = true;
+    });
+    var data = await TaskListRequest("New");
+    setState(() {
+      Loading = false;
+      TaskItems = data;
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(TaskItems.toString()),
-    );
+    return Loading
+        ? (const Center(child: CircularProgressIndicator()))
+        : (const Center(
+            child: Text("New"),
+          ));
   }
 }

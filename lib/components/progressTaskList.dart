@@ -33,8 +33,6 @@ class _progressTaskListState extends State<progressTaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Welcome to Progress Task List"),
-    );
+    return Loading?(Center(child: CircularProgressIndicator())):(Center(child: Text("Progress"),));
   }
 }
