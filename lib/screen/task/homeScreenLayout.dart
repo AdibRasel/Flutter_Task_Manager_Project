@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/components/TaskAppBar.dart';
 import 'package:taskmanager/components/appBottomNav.dart';
 
 import '../../components/cancelTaskList.dart';
@@ -14,9 +15,7 @@ class homeScreenLayout extends StatefulWidget {
 }
 
 class _homeScreenLayoutState extends State<homeScreenLayout> {
-
   int TabIndex = 0;
-
 
   onItemTapped(int index) {
     setState(() {
@@ -24,21 +23,17 @@ class _homeScreenLayoutState extends State<homeScreenLayout> {
     });
   }
 
-
-  final widgetOptions =[
+  final widgetOptions = [
     newTaskList(),
     progressTaskList(),
     completedTaskList(),
     cancelTaskList(),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home Screen"),
-      ),
+      appBar: TaskAppBar(),
       body: widgetOptions.elementAt(TabIndex),
       bottomNavigationBar: appBottomNav(TabIndex, onItemTapped),
     );

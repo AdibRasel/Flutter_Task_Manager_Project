@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/components/TaskList.dart';
 
 import '../api/apiClient.dart';
 
@@ -35,6 +36,15 @@ class _completedTaskListState extends State<completedTaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return Loading?(Center(child: CircularProgressIndicator())):(Center(child: Text("Completed"),));
+    return Loading
+        ? (const Center(child: CircularProgressIndicator()))
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: TaskList(TaskItems),
+            ),
+          );
   }
 }

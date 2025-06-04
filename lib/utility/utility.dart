@@ -1,10 +1,9 @@
-
-
+import 'dart:typed_data';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
- // User এর সকল ডাটা SharedPreferences এর মাধ্যমে সেভ করে রাখা হয়েছে। 
-Future StoreUserData(UserData)async{
+// User এর সকল ডাটা SharedPreferences এর মাধ্যমে সেভ করে রাখা হয়েছে।
+Future StoreUserData(UserData) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   await prefs.setString('token', UserData['token']);
@@ -14,29 +13,21 @@ Future StoreUserData(UserData)async{
   await prefs.setString('mobile', UserData['data']['mobile']);
   await prefs.setString('photo', UserData['data']['photo']);
   await prefs.setString('createdDate', UserData['data']['createdDate']);
-
 }
 
-
-
-Future SetEmailVerification(Email)async{
+Future SetEmailVerification(Email) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   await prefs.setString('EmailVerification', Email);
 }
 
-
-
-Future SetOTPVerification(OTP)async{
+Future SetOTPVerification(OTP) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   await prefs.setString('OTPVerification', OTP);
 }
 
-
-
-
-Future<String?> GetUserData(key)async{
+Future<String?> GetUserData(key) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? MyData = await prefs.getString(key);
@@ -49,5 +40,10 @@ Future<String?> GetUserData(key)async{
   // mobile = await prefs.getString('mobile');
   // photo = await prefs.getString('photo');
   // createdDate = await prefs.getString('createdDate');
+}
 
+ShowBase64Image(Base64String) {
+  UriData? data = Uri.parse(Base64String).data;
+  Uint8List MyImage = data!.contentAsBytes();
+  return MyImage;
 }

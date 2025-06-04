@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/components/TaskList.dart';
 
 import '../api/apiClient.dart';
 
@@ -10,8 +11,6 @@ class cancelTaskList extends StatefulWidget {
 }
 
 class _cancelTaskListState extends State<cancelTaskList> {
-
-
   List TaskItems = [];
   bool Loading = false;
 
@@ -21,18 +20,28 @@ class _cancelTaskListState extends State<cancelTaskList> {
     CallData();
   }
 
-  CallData() async{
-    setState(() { Loading = true; });
-   var data = await TaskListRequest("Cancled");
-   setState(() {
-     Loading = false;
-     TaskItems = data;
-   });
+  CallData() async {
+    setState(() {
+      Loading = true;
+    });
+    var data = await TaskListRequest("Cancled");
+    setState(() {
+      Loading = false;
+      TaskItems = data;
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
-    return Loading?(Center(child: CircularProgressIndicator())):(Center(child: Text("Cancled"),));
+    return Loading
+        ? (const Center(child: CircularProgressIndicator()))
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: TaskList(TaskItems),
+            ),
+          );
   }
 }

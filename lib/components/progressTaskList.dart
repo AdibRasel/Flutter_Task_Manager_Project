@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/components/TaskList.dart';
 
 import '../api/apiClient.dart';
 
@@ -10,8 +11,6 @@ class progressTaskList extends StatefulWidget {
 }
 
 class _progressTaskListState extends State<progressTaskList> {
-
-
   List TaskItems = [];
   bool Loading = false;
 
@@ -21,18 +20,28 @@ class _progressTaskListState extends State<progressTaskList> {
     CallData();
   }
 
-  CallData() async{
-    setState(() { Loading = true; });
-   var data = await TaskListRequest("Progress");
-   setState(() {
-     Loading = false;
-     TaskItems = data;
-   });
+  CallData() async {
+    setState(() {
+      Loading = true;
+    });
+    var data = await TaskListRequest("Progress");
+    setState(() {
+      Loading = false;
+      TaskItems = data;
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
-    return Loading?(Center(child: CircularProgressIndicator())):(Center(child: Text("Progress"),));
+    return Loading
+        ? (const Center(child: CircularProgressIndicator()))
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: TaskList(TaskItems),
+            ),
+          );
   }
 }

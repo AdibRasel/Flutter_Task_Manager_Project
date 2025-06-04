@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskmanager/api/apiClient.dart';
+import 'package:taskmanager/components/TaskList.dart';
 import 'package:taskmanager/utility/utility.dart';
 
 class newTaskList extends StatefulWidget {
@@ -34,8 +35,13 @@ class _newTaskListState extends State<newTaskList> {
   Widget build(BuildContext context) {
     return Loading
         ? (const Center(child: CircularProgressIndicator()))
-        : (const Center(
-            child: Text("New"),
-          ));
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: Center(
+              child: TaskList(TaskItems),
+            ),
+          );
   }
 }
