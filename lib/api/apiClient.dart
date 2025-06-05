@@ -202,4 +202,42 @@ Future <bool> TaskCreateRequest(FormValues) async {
 
 
 
+
+// Task Delete Request
+Future <bool> TaskDeleteRequest(id) async {
+
+  var URL = Uri.parse("${BaseURL}/taskDelete/${id}");
+
+
+  var token = await GetUserData('token');
+  var userId = await GetUserData('userId');
+  var RequestHeaderWithToken = {
+    "Content-Type": "application/json",
+    "token": token ?? "",
+    "userId": userId ?? "",
+  };
+
+
+
+
+  var response = await http.delete(URL, headers: RequestHeaderWithToken);
+
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+
+  if(ResultCode == 200 && ResultBody['status']== "success"){
+    SuccessToast("Task List Request Success");
+    return true;
+  }else {
+    ErrorToast("Request fail! try again");
+    return false;
+  }
+
+}
+
+
+
+
+
+
 //================== Task Releted API Request End ===============================

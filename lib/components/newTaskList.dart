@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskmanager/api/apiClient.dart';
 import 'package:taskmanager/components/TaskList.dart';
+import 'package:taskmanager/style/style.dart';
 import 'package:taskmanager/utility/utility.dart';
 
 class newTaskList extends StatefulWidget {
@@ -31,6 +32,40 @@ class _newTaskListState extends State<newTaskList> {
     });
   }
 
+
+
+
+  DeleteItem(id) async{
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text("Delete !"),
+          content: Text("Onece delete, you can't get it back"),
+          actions: [
+            OutlinedButton(onPressed: () async {
+                Navigator.pop(context);
+                setState((){Loading= true;});
+                await TaskDeleteRequest(id);
+                await CallData();
+              }, 
+              child: Text("Yes", style: TextStyle(color: colorWhite),),
+              style: AppStatusButtonStyle(colorRed),
+            ),
+            OutlinedButton(onPressed: (){
+                Navigator.pop(context);
+              }, 
+              child: Text("No", style: TextStyle(color: colorWhite),),
+              style: AppStatusButtonStyle(colorBlue),
+            )
+          ],
+        );
+      }
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Loading
@@ -40,7 +75,7 @@ class _newTaskListState extends State<newTaskList> {
               await CallData();
             },
             child: Center(
-              child: TaskList(TaskItems),
+              child: TaskList(TaskItems, DeleteItem),
             ),
           );
   }
