@@ -167,6 +167,39 @@ Future <List> TaskListRequest(status) async {
 
 
 
+// Task Create Request
+Future <bool> TaskCreateRequest(FormValues) async {
+
+  var URL = Uri.parse("${BaseURL}/createTask");
+
+
+  var token = await GetUserData('token');
+  var userId = await GetUserData('userId');
+  var RequestHeaderWithToken = {
+    "Content-Type": "application/json",
+    "token": token ?? "",
+    "userId": userId ?? "",
+  };
+
+
+  var PostBody= json.encode(FormValues);
+
+
+  var response = await http.post(URL, headers: RequestHeaderWithToken, body: PostBody);
+
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+
+  if(ResultCode == 200 && ResultBody['status']== "success"){
+    SuccessToast("Task List Request Success");
+    return true;
+  }else {
+    ErrorToast("Request fail! try again");
+    return false;
+  }
+
+}
+
 
 
 //================== Task Releted API Request End ===============================

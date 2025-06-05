@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taskmanager/style/style.dart';
 import 'package:taskmanager/utility/utility.dart';
 
-AppBar TaskAppBar() {
+AppBar TaskAppBar(context, ProfileDate) {
   return AppBar(
     backgroundColor: colorGreen,
     elevation: 0,
@@ -14,19 +14,20 @@ AppBar TaskAppBar() {
           radius: 24,
           backgroundColor: Colors.white,
           child: ClipOval(
-            // child: Image.memory(
-            //   ShowBase64Image(""), // Base 64 Image Data
-            //   fit: BoxFit.cover,
-            //   width: 48,
-            //   height: 48,
-            // ),
-            child: Image.network(
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-pm5nsaoeEsJuLaMXPwSkXna5gYbPCAaK3A&s",
-              fit: BoxFit.cover,
-              width: 48,
-              height: 48,
+              child: DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle, // 50% round
             ),
-          ),
+            child: ClipOval(
+              // Image টাকেও গোল করতে হবে
+              child: Image.memory(
+                ShowBase64Image(ProfileDate['photo']), // Base64 Image Data
+                fit: BoxFit.cover,
+                width: 48,
+                height: 48,
+              ),
+            ),
+          )),
         ),
         const SizedBox(width: 12),
         Column(
@@ -34,11 +35,11 @@ AppBar TaskAppBar() {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Rasel Hossain",
+              ProfileDate["fullName"],
               style: Head7Text(colorWhite),
             ),
             Text(
-              "adibrasel.com@gmail.com",
+              ProfileDate["email"],
               style: Head9Text(colorWhite),
             ),
           ],
@@ -46,8 +47,18 @@ AppBar TaskAppBar() {
       ],
     ),
     actions: [
-      IconButton(onPressed: () {}, icon: Icon(Icons.add_circle_outline)),
-      IconButton(onPressed: () {}, icon: Icon(Icons.output)),
+      IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/CreateTask");
+          },
+          icon: Icon(Icons.add_circle_outline)),
+      IconButton(
+          onPressed: () async {
+            await RemoveToken();
+            Navigator.pushNamedAndRemoveUntil(
+                context, "/login", (route) => false);
+          },
+          icon: Icon(Icons.output)),
     ],
   );
 }
