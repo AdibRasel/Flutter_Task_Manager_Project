@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskmanager/style/style.dart';
 
-ListView TaskList(TaskItems, DeleteItem) {
+ListView TaskList(TaskItems, DeleteItem, StatusChange) {
   return ListView.builder(
 
     itemCount: TaskItems.length,
@@ -12,7 +12,7 @@ ListView TaskList(TaskItems, DeleteItem) {
         statusColor = colorBlue;
       }else if(TaskItems[index]["status"] == "Progress"){
         statusColor = colorOrange;
-      }else if(TaskItems[index]["status"] == "Cancled"){
+      }else if(TaskItems[index]["status"] == "Canceld"){
         statusColor = colorRed;
       }
 
@@ -37,7 +37,9 @@ ListView TaskList(TaskItems, DeleteItem) {
                     children: [
                       SizedBox(width: 50, height: 30, 
                         child: ElevatedButton(
-                          onPressed: (){}, 
+                          onPressed: (){
+                            StatusChange(TaskItems[index]["_id"]);
+                          }, 
                           child: Icon(Icons.edit_location_alt_outlined, size:16), style: AppStatusButtonStyle(colorBlue), 
                         ),
                       ),
