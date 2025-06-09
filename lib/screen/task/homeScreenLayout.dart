@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskmanager/components/TaskAppBar.dart';
 import 'package:taskmanager/components/appBottomNav.dart';
+import 'package:taskmanager/components/userHome.dart';
 import 'package:taskmanager/utility/utility.dart';
 
 import '../../components/cancelTaskList.dart';
@@ -67,6 +68,7 @@ class _homeScreenLayoutState extends State<homeScreenLayout> {
   }
 
   final List<Widget> widgetOptions = [
+    UserHome(),
     newTaskList(),
     progressTaskList(),
     completedTaskList(),

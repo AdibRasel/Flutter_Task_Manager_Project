@@ -5,6 +5,10 @@ BottomNavigationBar appBottomNav(currentIndex, onItemTapped) {
   return BottomNavigationBar(
     items: const [
       BottomNavigationBarItem(
+        icon: Icon(Icons.home_outlined),
+        label: "Home",
+      ),
+      BottomNavigationBarItem(
         icon: Icon(Icons.list_alt),
         label: "New",
       ),
