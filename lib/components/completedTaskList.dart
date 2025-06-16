@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager/components/TaskList.dart';
-import 'package:taskmanager/style/style.dart';
+import 'package:task_manager/components/TaskList.dart';
+import 'package:task_manager/style/style.dart';
 
 import '../api/apiClient.dart';
 
@@ -82,7 +82,7 @@ class _completedTaskListState extends State<completedTaskList> {
           builder: (BuildContext context, StateSetter setState){
             return Container(
               padding: const EdgeInsets.all(30),
-              height: 300,
+              height: 350,
               width: double.infinity,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

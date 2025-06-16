@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager/style/style.dart';
+import 'package:task_manager/style/style.dart';
 
 BottomNavigationBar appBottomNav(currentIndex, onItemTapped) {
   return BottomNavigationBar(

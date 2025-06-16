@@ -1,6 +1,6 @@
-# taskmanager
+# task_manager
 
-A new Flutter project.
+Task Manager Full Project
 
 ## Getting Started
 

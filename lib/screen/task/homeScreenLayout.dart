@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager/components/TaskAppBar.dart';
-import 'package:taskmanager/components/appBottomNav.dart';
-import 'package:taskmanager/components/userHome.dart';
-import 'package:taskmanager/utility/utility.dart';
+import 'package:task_manager/components/TaskAppBar.dart';
+import 'package:task_manager/components/appBottomNav.dart';
+import 'package:task_manager/components/userHome.dart';
+import 'package:task_manager/utility/utility.dart';
 
 import '../../components/cancelTaskList.dart';
 import '../../components/completedTaskList.dart';

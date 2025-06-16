@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:taskmanager/style/style.dart';
-import 'package:taskmanager/utility/utility.dart';
+import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utility/utility.dart';
 
 import '../../api/apiClient.dart';
 

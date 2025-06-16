@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager/api/apiClient.dart';
-import 'package:taskmanager/style/style.dart';
+import 'package:task_manager/api/apiClient.dart';
+import 'package:task_manager/style/style.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({super.key});

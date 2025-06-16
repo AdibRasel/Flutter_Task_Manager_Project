@@ -1,11 +1,11 @@
 {
-    "name": "taskmanager",
-    "short_name": "taskmanager",
+    "name": "task_manager",
+    "short_name": "task_manager",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Task Manager Full Project",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

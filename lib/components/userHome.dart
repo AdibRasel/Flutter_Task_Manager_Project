@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:http/http.dart' as http;
-import 'package:taskmanager/utility/utility.dart';
+import 'package:task_manager/utility/utility.dart';
 
 // ✅ Replace with your actual base URL
 const String BaseURL = "https://flutter-backend-all-api.onrender.com/api/v1";
@@ -43,7 +43,7 @@ Future<Map<String, dynamic>> DashBoardSummary() async {
       "New": "0",
       "Progress": "0",
       "Completed": "0",
-      "Canceled": "0",
+      "Canceld": "0",
     };
   }
 }
@@ -60,7 +60,7 @@ class _UserHomeState extends State<UserHome> {
   int newCount = 0;
   int progressCount = 0;
   int completedCount = 0;
-  int canceledCount = 0;
+  int CanceldCount = 0;
 
   bool isLoading = false;
 
@@ -83,7 +83,7 @@ class _UserHomeState extends State<UserHome> {
         newCount = parseCount(result["New"]);
         progressCount = parseCount(result["Progress"]);
         completedCount = parseCount(result["Completed"]);
-        canceledCount = parseCount(result["Canceled"]);
+        CanceldCount = parseCount(result["Canceld"]);
         isLoading = false;
       });
     } catch (e) {
@@ -102,8 +102,8 @@ class _UserHomeState extends State<UserHome> {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> taskCounts = [newCount, progressCount, completedCount, canceledCount];
-    final List<String> taskLabels = ["New", "Progress", "Completed", "Canceled"];
+    final List<int> taskCounts = [newCount, progressCount, completedCount, CanceldCount];
+    final List<String> taskLabels = ["New", "Progress", "Completed", "Canceld"];
     final List<Color> taskColors = [
       Colors.blueAccent,
       Colors.orangeAccent,

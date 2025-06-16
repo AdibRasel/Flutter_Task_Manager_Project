@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:taskmanager/style/style.dart';
+import 'package:task_manager/style/style.dart';
 
 import '../../api/apiClient.dart';
 import '../../utility/utility.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager/api/apiClient.dart';
-import 'package:taskmanager/style/style.dart';
-import 'package:taskmanager/utility/utility.dart';
+import 'package:task_manager/api/apiClient.dart';
+import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utility/utility.dart';
 
 class taskCreateScreen extends StatefulWidget {
   const taskCreateScreen({super.key});

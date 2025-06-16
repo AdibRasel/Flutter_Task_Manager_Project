@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager/screen/onboarding/emailVerification.dart';
-import 'package:taskmanager/screen/onboarding/loginScreen.dart';
-import 'package:taskmanager/screen/onboarding/pinVerificationScreen.dart';
-import 'package:taskmanager/screen/onboarding/registrationScreen.dart';
-import 'package:taskmanager/screen/onboarding/setPasswordScreen.dart';
-import 'package:taskmanager/screen/onboarding/splashScreen.dart';
-import 'package:taskmanager/screen/task/homeScreenLayout.dart';
-import 'package:taskmanager/screen/task/taskCreateScreen.dart';
-// import 'package:taskmanager/screen/task/newTaskListScreen.dart';
+import 'package:task_manager/screen/onboarding/emailVerification.dart';
+import 'package:task_manager/screen/onboarding/loginScreen.dart';
+import 'package:task_manager/screen/onboarding/pinVerificationScreen.dart';
+import 'package:task_manager/screen/onboarding/registrationScreen.dart';
+import 'package:task_manager/screen/onboarding/setPasswordScreen.dart';
+import 'package:task_manager/screen/onboarding/splashScreen.dart';
+import 'package:task_manager/screen/task/homeScreenLayout.dart';
+import 'package:task_manager/screen/task/taskCreateScreen.dart';
+// import 'package:task_manager/screen/task/newTaskListScreen.dart';
 
 import 'utility/utility.dart';
 
