@@ -21,8 +21,10 @@ main() async {
   // আর যদি লগিন না করে থাকে তাহলে loginScreen এ নিয়ে যাবে।
 
   if(token==null){
-    runApp( const MyApp("/login"));
+    // runApp( const MyApp("/login"));
     // runApp( const MyApp("/newTask"));
+    runApp( const MyApp("/"));
+
   }else{
     runApp( const MyApp("/"));
     // runApp( const MyApp("/login"));
@@ -46,7 +48,8 @@ class MyApp extends StatelessWidget {
       initialRoute: FirstRoute,
       routes: {
         // '/': (context)=> splashScreen(),
-        '/': (context)=> homeScreenLayout(),
+        // '/': (context)=> homeScreenLayout(),
+        '/': (context) => const splashScreen(),
         '/homeScreenLayout': (context)=> homeScreenLayout(),
         '/login': (context)=> loginScreen(),
         '/registration': (context)=> registrationScreen(),
